@@ -1,0 +1,14 @@
+{
+  "slug": "fiftyfifty-verdict-postponed",
+  "section": "COURTS",
+  "source": "Star News via allkpop",
+  "caption": "A 13 billion won K-pop lawsuit just lost its verdict date. #kpop #fiftyfifty",
+  "scenes": [
+    {"type": "hook", "top": ["THE VERDICT", "WAS DUE TODAY"], "token": "13B", "bottom": "WON AT STAKE", "pill": "THEN THE COURT PULLED IT"},
+    {"type": "statement", "kicker": "FIFTY FIFTY · ATTRAKT", "lines": ["VERDICT", "*POSTPONED"], "caption": "Seoul court, *Nov 13.*"},
+    {"type": "timeline", "title": "THE CASE", "events": [["2023", "Attrakt sues three former members"], ["NOV 13", "First ruling was scheduled"], ["JANUARY", "Trial reopens instead"]], "caption": "No ruling *yet.*"},
+    {"type": "sides", "title": "TWO SIDES", "a": {"who": "Attrakt", "text": "Seeks 13 billion won from the ex-members and others."}, "b": {"who": "Ex-members", "text": "Have filed a countersuit against the agency."}},
+    {"type": "number", "label": "DAMAGES CLAIMED", "value": 13, "suffix": "B", "under": "KOREAN WON", "caption": "About *9.6 million dollars.*"},
+    {"type": "outro", "lines": ["FOLLOW", "*DEEP CUT"], "sub": "ONE K-POP STORY AT A TIME"}
+  ]
+}

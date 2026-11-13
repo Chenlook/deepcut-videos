@@ -1,0 +1,20 @@
+{
+  "slug": "illit-top-album-sales",
+  "section": "CHARTS",
+  "source": "Billboard figures via X1071",
+  "caption": "How did a 4-song EP hit #1 in the U.S.? Source: Billboard figures via X1071. #kpop #illit",
+  "scenes": [
+    {"type": "hook", "top": ["HOW DID A", "4-SONG EP HIT"], "token": "#1", "bottom": "IN THE U.S.?", "pill": "THE ANSWER IS ONE NUMBER"},
+    {"type": "ranking", "title": "BILLBOARD · TOP ALBUM SALES", "tag": "NOV 14", "highlight": 0,
+     "rows": [["1", "ILLIT", "BREAK EVEN"], ["2", "QUEENS OF THE STONE AGE"], ["3", "MICHAEL JACKSON · THRILLER"], ["5", "NICKELBACK"], ["6", "IVE"]],
+     "caption": "ILLIT's *first No. 1* on this chart."},
+    {"type": "number", "label": "U.S. COPIES SOLD", "value": 32000, "under": "IN ONE WEEK", "caption": "Their *biggest U.S. sales week* so far."},
+    {"type": "grid", "count": 24, "plus": true, "label": ["CD", "VERSIONS"], "caption": "One EP. *24+ CD versions.*"},
+    {"type": "items", "title": "WHAT'S INSIDE", "labels": ["PHOTOCARDS", "POSTERS", "STICKERS"], "caption": "Many include *collectible extras.*"},
+    {"type": "flow", "title": "HOW IT ADDS UP", "nodes": ["24+ EDITIONS", "FANS CAN BUY SEVERAL", "EVERY COPY COUNTS"], "caption": "This chart ranks *copies sold.*"},
+    {"type": "streak", "big": "5", "title": "IN A ROW", "count": 5, "labels": "TOP 10", "last": "#1", "last_label": "NO. 1",
+     "lines": ["ILLIT'S LAST FIVE ENTRIES", "ON TOP ALBUM SALES"], "caption": "Fifth straight *top-10 entry* there."},
+    {"type": "versus", "left": ["SMART", "STRATEGY"], "right": ["TOO MANY", "VERSIONS?"], "pill": "YOUR TAKE?  COMMENT"},
+    {"type": "outro", "lines": ["FOLLOW", "*DEEP CUT"], "sub": "ONE K-POP STORY AT A TIME"}
+  ]
+}
