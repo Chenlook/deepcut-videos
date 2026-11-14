@@ -22,7 +22,7 @@ INK, WHITE, GREY = (6, 7, 9), (246, 246, 242), (150, 154, 162)
 NEO, CYAN, VIOLET, PINK = (190, 255, 50), (60, 215, 255), (160, 120, 255), (255, 70, 150)
 LEFT, MAXW = 70, 880
 BEAT = 0.4
-DEFAULT_DUR = dict(hook=2.4, ranking=3.2, number=2.4, grid=3.2, items=2.4, flow=3.2, streak=2.4, versus=3.2, timeline=3.6, sides=4.0, statement=2.8, outro=1.6)
+DEFAULT_DUR = dict(hook=2.4, ranking=3.2, number=2.4, grid=3.2, items=2.4, flow=3.2, streak=2.4, versus=3.2, timeline=3.6, sides=4.0, statement=2.8, outro=2.4)
 _fc, _cache = {}, {}
 
 
@@ -165,13 +165,14 @@ VIG = (1 - 0.26 * (((xx_ - W / 2) / (W / 2)) ** 2 * 0.5 + ((yy_ - H / 2) / (H / 
 GRAIN = np.random.default_rng(9).normal(0, 2.5, (H, W, 1)).astype(np.float32)
 
 
-def chrome_blob(T, tint, shape):
+def chrome_blob(ph, tint, shape):
     a, b, c = shape
-    R = 0.74 + 0.085 * np.sin(a * C_TH + T * 1.5) + 0.055 * np.sin(b * C_TH - T * 1.1) + 0.04 * np.sin(c * C_TH + T * 2.1)
+    p1, p2, p3, p4, p5 = ph
+    R = 0.74 + 0.085 * np.sin(a * C_TH + p1) + 0.055 * np.sin(b * C_TH - p2) + 0.04 * np.sin(c * C_TH + p3)
     q = np.clip(C_R / R, 0, 1)
     z = np.sqrt(1 - q * q)
     nx, ny = cxn / R, cyn / R
-    yy = ny + 0.16 * np.sin(3.2 * nx + T * 1.3) + 0.08 * np.sin(7 * nx - T * 0.8)
+    yy = ny + 0.16 * np.sin(3.2 * nx + p4) + 0.08 * np.sin(7 * nx - p5)
     v = np.where(yy < 0, np.clip(0.30 + 0.85 * np.clip(yy + 1, 0, None) ** 1.6, 0, 1.05), np.clip(0.06 + 0.55 * np.clip(yy, 0, None) ** 0.8, 0, 1))
     v = v + 0.5 * np.exp(-((nx + 0.35) ** 2 + (ny + 0.45) ** 2) / 0.02)
     col = v[..., None] * np.array([235, 240, 248], np.float32) + ((1 - z) ** 2.2)[..., None] * np.array(tint, np.float32) * 0.9
@@ -180,42 +181,47 @@ def chrome_blob(T, tint, shape):
 
 
 def dark_bg(T, col, V, blob=False):
+    L = V["total"]
+
+    def w(f):
+        return 2 * math.pi * max(1, round(f * L / (2 * math.pi))) / L * T
+
     acc = np.array(col, np.float32)
     img = np.zeros((96, 54, 3), np.float32) + np.array(INK, np.float32)
     gxo, gyo = V["glow"]
-    for cx, cy, r, k in ((gxo + 0.12 * math.sin(T * 1.1), gyo + 0.06 * math.cos(T * 0.9), 0.46, 0.30), (1 - gxo + 0.15 * math.cos(T * 0.8), 0.95, 0.42, 0.22)):
+    for cx, cy, r, k in ((gxo + 0.12 * math.sin(w(1.1)), gyo + 0.06 * math.cos(w(0.9)), 0.46, 0.30), (1 - gxo + 0.15 * math.cos(w(0.8)), 0.95, 0.42, 0.22)):
         dd = ((gx - cx) ** 2 + ((gy - cy) * 1.78) ** 2) / (r * r)
         img += np.exp(-dd)[..., None] * acc * k
     canvas = Image.fromarray(img.clip(0, 255).astype(np.uint8), "RGB").resize((W, H), Image.BICUBIC).convert("RGBA")
     if blob:
-        b = chrome_blob(T, col, V["blob_shape"]).resize((760, 760), Image.BICUBIC)
+        b = chrome_blob((w(1.5), w(1.1), w(2.1), w(1.3), w(0.8)), col, V["blob_shape"]).resize((760, 760), Image.BICUBIC)
         if V["blob_side"] == "right":
-            canvas.alpha_composite(b.crop((0, 0, 330, 760)), (750, 980 + int(20 * math.sin(T))))
+            canvas.alpha_composite(b.crop((0, 0, 330, 760)), (750, 980 + int(20 * math.sin(w(1.0)))))
         else:
-            canvas.alpha_composite(b.crop((430, 0, 760, 760)), (0, 1500 + int(20 * math.sin(T))))
+            canvas.alpha_composite(b.crop((430, 0, 760, 760)), (0, 1500 + int(20 * math.sin(w(1.0)))))
     ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(ov)
     hz = 1540
     if V["motif"] == "grid":
         for k in range(-9, 10):
             d.line([(540 + k * 46, hz), (540 + k * 520, H)], fill=col + (70,), width=2)
-        ph = (T * 1.4) % 1
+        ph = (T * max(1, round(1.4 * L)) / L) % 1
         for i in range(9):
             fch = ((i + ph) / 9) ** 2.3
             d.line([(0, hz + (H - hz) * fch), (W, hz + (H - hz) * fch)], fill=col + (int(30 + 110 * fch),), width=2)
         d.line([(0, hz), (W, hz)], fill=col + (150,), width=3)
     elif V["motif"] == "rings":
         for i in range(7):
-            r = ((i + (T * 0.5) % 1) / 7) ** 1.4 * 900
+            r = ((i + (T * max(1, round(0.5 * L)) / L) % 1) / 7) ** 1.4 * 900
             d.ellipse([540 - r, 1900 - r * 0.55, 540 + r, 1900 + r * 0.55], outline=col + (int(150 * (1 - r / 900)) + 20,), width=3)
     else:  # bars
         for i in range(14):
-            x = (i * 97 + T * 60) % (W + 80) - 40
-            hgt = 120 + 180 * (0.5 + 0.5 * math.sin(T * 2 + i * 1.7))
+            x = (i * 97 + T * (W + 80) * max(1, round(60 * L / (W + 80))) / L) % (W + 80) - 40
+            hgt = 120 + 180 * (0.5 + 0.5 * math.sin(w(2.0) + i * 1.7))
             d.rectangle([x, H - hgt, x + 26, H], fill=col + (70,))
         d.line([(0, hz + 100), (W, hz + 100)], fill=col + (90,), width=2)
     for x, y, sp, sz in V["parts"]:
-        ypos = (y - T * sp) % 1500
+        ypos = (y - T * 1500 * max(1, round(sp * L / 1500)) / L) % 1500
         d.rectangle([x, ypos, x + sz, ypos + sz], fill=col + (120,))
     canvas.alpha_composite(ov)
     return canvas
@@ -631,16 +637,13 @@ def s_statement(c, t, T, d, X):
 def s_outro(c, t, T, d, X):
     dr = ImageDraw.Draw(c)
     lines = d.get("lines", ["FOLLOW", "*DEEP CUT"])[:2]
-    if t < 1.15:
+    if True:
         s = fit([l.lstrip("*") for l in lines], MAXW, 150)
         for i, l in enumerate(lines):
             if t >= i * 0.2:
                 dr.text((LEFT, 520 + i * int(s * 1.14)), l.lstrip("*"), font=HF(s), fill=NEO if l.startswith("*") else WHITE, anchor="ls")
         if t >= 0.4 and d.get("sub"):
             dr.text((LEFT, 520 + 2 * int(s * 1.14) - 40), d["sub"], font=F(CH_B, fit([d["sub"]], MAXW, 54, lambda z: F(CH_B, z))), fill=WHITE, anchor="ls")
-    if t >= 0.9 and X.get("token"):
-        q = ease((t - 0.9) / 0.7)
-        put(c, token_sprite(X["token"]), 520, 800, scale=0.1 + 0.82 * q, alpha=min(1.0, q * 2))
 
 
 SCENES = dict(hook=s_hook, ranking=s_ranking, number=s_number, grid=s_grid, items=s_items, flow=s_flow, streak=s_streak, versus=s_versus, timeline=s_timeline, sides=s_sides, statement=s_statement, outro=s_outro)
@@ -688,6 +691,11 @@ def plan(story):
             X["order"] = order
         scenes.append(dict(type=typ, data=s, dur=dur, start=round(t, 4), X=X))
         t += dur
+    rem = round(t % 1.6, 4)
+    if rem > 1e-3 and rem < 1.6 - 1e-3:  # pad the last scene so picture and music loop on a bar line
+        scenes[-1]["dur"] = round(scenes[-1]["dur"] + 1.6 - rem, 4)
+        t += 1.6 - rem
+    V["total"] = round(t, 4)
     return dict(V=V, scenes=scenes, total=round(t, 4), seed=seed, rng=rng)
 
 
@@ -697,8 +705,21 @@ def frame(story, P, i, t):
     X = sc["X"]
     dark = X["mode"] == "dark"
     canvas = dark_bg(T, X["glow"], P["V"], blob=sc["type"] in ("hook", "outro")) if dark else Image.new("RGBA", (W, H), NEO + (255,))
-    SCENES[sc["type"]](canvas, t, T, sc["data"], X)
-    hud(canvas, story, T, P["total"], dark)
+    LOOP = 0.7
+    if i == len(P["scenes"]) - 1 and i > 0 and P["scenes"][0]["type"] == "hook" and t > sc["dur"] - LOOP:
+        p = ease((t - (sc["dur"] - LOOP)) / (LOOP - 0.1))
+        a_layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        SCENES[sc["type"]](a_layer, t, T, sc["data"], X)
+        b_layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        h0 = P["scenes"][0]
+        SCENES["hook"](b_layer, 0.0, 0.0, h0["data"], h0["X"])
+        for layer, al in ((a_layer, 1 - p), (b_layer, p)):
+            if al > 0.004:
+                layer.putalpha(layer.getchannel("A").point(lambda v, al=al: int(v * al)))
+                canvas.alpha_composite(layer)
+    else:
+        SCENES[sc["type"]](canvas, t, T, sc["data"], X)
+    hud(canvas, story, T if i < len(P["scenes"]) - 1 or t < sc["dur"] - 0.05 else P["total"], P["total"], dark)
     n = int(round(t * FPS))
     d = ImageDraw.Draw(canvas)
     if n < 5 and i > 0:
@@ -717,7 +738,7 @@ def frame(story, P, i, t):
         else:
             x0 = W - f * (W + 260)
             d.rectangle([x0, 0, x0 + 260, H], fill=col)
-    if n < 5:
+    if n < 5 and i > 0:
         z = 1 + 0.06 * (1 - n / 5) ** 2
         zw, zh = int(W * z), int(H * z)
         canvas = canvas.resize((zw, zh), Image.BILINEAR).crop(((zw - W) // 2, (zh - H) // 2, (zw - W) // 2 + W, (zh - H) // 2 + H))
@@ -754,12 +775,15 @@ def soundtrack(P, path):
         return 440.0 * 2 ** ((n + tr - 69) / 12)
 
     def add(buf, sig, t, gain=1.0, pan=0.0):
-        i = int(round(t * SR))
-        if i >= N or i < 0:
-            return
-        sig = sig[: N - i]
-        buf[i:i + len(sig), 0] += sig * gain * (1 - max(0, pan))
-        buf[i:i + len(sig), 1] += sig * gain * (1 + min(0, pan))
+        i = int(round(t * SR)) % N
+        sig = sig[:N]
+        gl, gr = gain * (1 - max(0, pan)), gain * (1 + min(0, pan))
+        k = min(len(sig), N - i)
+        buf[i:i + k, 0] += sig[:k] * gl
+        buf[i:i + k, 1] += sig[:k] * gr
+        if k < len(sig):  # the tail continues at the start, so the loop point is seamless
+            buf[: len(sig) - k, 0] += sig[k:] * gl
+            buf[: len(sig) - k, 1] += sig[k:] * gr
 
     def filt(x, kind, fc):
         return signal.sosfilt(signal.butter(2, fc, kind, fs=SR, output="sos"), x).astype(np.float32)
@@ -771,7 +795,7 @@ def soundtrack(P, path):
         t = tt(d)
         f = hz(note)
         x = np.sin(2 * np.pi * f * t) + 0.28 * np.sin(2 * np.pi * 2 * f * t) * np.exp(-t * 3) + 0.10 * np.sin(2 * np.pi * 3 * f * t) * np.exp(-t * 6)
-        return x * (1 + 0.06 * np.sin(2 * np.pi * 4.5 * t)) * np.minimum(1, t * 60) * np.exp(-t * 1.6) * np.minimum(1, (d - t) * 20)
+        return x * (1 + 0.06 * np.sin(2 * np.pi * 4.5 * t)) * np.minimum(1, t * 60) * np.exp(-t * 1.6) * np.minimum(1, (d - t) * 6)
 
     def bell(note, d=0.5):
         t = tt(d)
@@ -798,6 +822,7 @@ def soundtrack(P, path):
         return CHORDS[prog[int(t / 1.6 + 1e-6) % 4]][2][k % 5]
 
     first = P["scenes"][0]["dur"]
+    last_start = P["scenes"][-1]["start"]
     quiet = {round(s["start"], 3) for s in P["scenes"] if s["type"] in ("flow", "sides")}
     kick_times, t0, bar = [], 0.0, 0
     while t0 < total - 1e-6:
@@ -805,7 +830,7 @@ def soundtrack(P, path):
         root, notes, mel = CHORDS[prog[bar % 4]]
         for i, n in enumerate(notes):
             add(music, ep(n, d), t0 + i * 0.012, 0.20, pan=-0.3 + 0.2 * i)
-        if t0 >= first - 1e-6 and round(t0, 3) not in quiet and t0 + 1.6 <= total + 1e-6:
+        if t0 >= first - 1e-6 and round(t0, 3) not in quiet and t0 + 1.6 <= last_start + 1e-6:
             for s in kicks:
                 add(drums, SK, t0 + s * STEP, 0.75)
                 kick_times.append(t0 + s * STEP)
@@ -828,7 +853,6 @@ def soundtrack(P, path):
         i = int(kt * SR)
         seg = duck[: N - i]
         env[i:i + len(seg)] = np.minimum(env[i:i + len(seg)], seg)
-    music *= env[:, None]
     # scene-synced notes, all taken from the chord sounding at that moment
     for s in P["scenes"][1:]:
         add(fx, whoosh(), s["start"] - 0.28, 0.07)
@@ -861,9 +885,8 @@ def soundtrack(P, path):
         if typ == "number" and isinstance(d.get("value"), (int, float)):
             for k in range(14):
                 add(fx, CK, st + k * 0.065, 0.10)
+    music *= env[:, None]
     mix = np.tanh((drums * 0.8 + music * 0.9 + fx * 0.9) * 0.7)
-    fade = int(0.25 * SR)
-    mix[-fade:] *= np.linspace(1, 0, fade, dtype=np.float32)[:, None]
     mix = mix / max(1e-6, np.abs(mix).max()) * 0.55
     wavfile.write(path, SR, (mix * 32767).astype(np.int16))
 

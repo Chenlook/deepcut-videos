@@ -1,17 +1,21 @@
 # Deep Cut : procédure d'un passage automatique
 
-Compte TikTok `@deepcut.kpop` (nom affiché : Deep Cut). Vidéos verticales en anglais sur l'actu K-pop
-« au-delà des comebacks » : industrie, justice, contrats, classements, chiffres. Ton : factuel, sourcé, sans parti pris.
+Compte TikTok `@deepcut.kpop` (nom affiché : Deep Cut). Vidéos verticales en anglais sur toute l'actu K-pop qui
+intéresse les fans, tous groupes confondus. Ton : factuel, sourcé, sans parti pris, mais vivant.
 
 Un passage produit une ou plusieurs vidéos (une par sujet) et les programme sur TikTok via Metricool.
 Le nombre de vidéos et les créneaux sont donnés par le message qui lance le passage.
 
 ## 0. Règles qui passent avant tout
 
-- **Deux sources fiables minimum par sujet**, indépendantes l'une de l'autre. Fiables : Yonhap, The Korea Herald,
-  Korea JoongAng Daily, The Korea Times, Billboard, Reuters, AP, Music Business Worldwide, Variety, communiqués
-  officiels d'agences. Soompi et allkpop ne comptent que s'ils relaient un communiqué ou un média cité ci-dessus.
-  Un sujet qui n'a pas ses deux sources n'est **pas** traité. S'il n'y a aucun sujet valable, ne rien publier.
+- **Sourcer chaque sujet.** Deux cas acceptés :
+  - une **source primaire officielle** suffit pour un fait simple : annonce d'agence ou d'artiste (comeback, tournée,
+    date de sortie), classement publié par son éditeur (Billboard, Circle, Oricon, Spotify), palmarès d'une cérémonie ;
+  - sinon, **deux sources fiables indépendantes** : Yonhap, The Korea Herald, Korea JoongAng Daily, The Korea Times,
+    Billboard, Reuters, AP, Music Business Worldwide, Variety, Rolling Stone. Obligatoire pour tout ce qui touche à un
+    litige, un contrat, de l'argent ou une controverse.
+  Soompi et allkpop servent à repérer les sujets, pas à les prouver, sauf s'ils relaient une source ci-dessus.
+  Un sujet insuffisamment sourcé n'est **pas** traité. S'il n'y a aucun sujet valable, ne rien publier.
 - **Neutralité** : aucun avis, aucun adjectif de jugement. Pour un litige, donner les deux versions (écran `sides`).
   Écrire « says », « according to », « the claim » plutôt que d'affirmer ce qui est contesté.
 - **Sujets exclus** : rumeurs de couple, santé, vie privée, tout ce qui concerne un mineur, accusations non confirmées,
@@ -38,12 +42,28 @@ majeur. Regarder aussi quels types d'écrans ont servi dans les trois dernières
 
 ## 2. Choisir les sujets
 
-Chercher l'actu K-pop des dernières 24 heures (plusieurs recherches : industrie, justice, classements Billboard,
-agences HYBE / SM / JYP / YG, records de streaming, tournées, récompenses). Classer les sujets par potentiel :
+Le but est que la vidéo **intéresse un fan**, pas qu'elle soit sérieuse. Chercher l'actu K-pop des dernières 24 heures
+avec des recherches variées, puis piocher dans des familles différentes :
 
-1. taille du public concerné (groupe ou agence très suivi),
+- **Sorties et comebacks** : annonce, date, concept, premiers chiffres (préventes, vues du clip en 24 h, ventes du premier jour).
+- **Classements et records** : Billboard, Circle, Oricon, Spotify, YouTube, premières fois, séries en cours.
+- **Tournées et concerts** : annonces, stades, dates ajoutées, billets partis en quelques minutes.
+- **Récompenses et émissions** : nominations, palmarès, victoires dans les émissions musicales, lineups de fin d'année.
+- **Débuts et nouveaux groupes** : qui débute, sous quelle agence, avec quels chiffres.
+- **Collaborations, mode et marques** : featurings, ambassadeurs, bandes originales, apparitions à l'étranger.
+- **Coulisses de l'industrie** : stratégie des agences, chiffres d'affaires, tendances (versions d'albums, photocards).
+- **Justice et contrats** : seulement quand c'est une vraie actu, et **au maximum une vidéo sur quatre**.
+
+Règles de variété :
+- jamais deux vidéos de suite dans la même famille, ni sur le même groupe ;
+- sur une journée, viser des groupes et des agences différents (grands noms comme groupes montants, garçons et filles) ;
+- relire `posted.md` : éviter les familles et les groupes des quatre dernières vidéos.
+
+Classer les candidats par potentiel :
+1. taille et ferveur du public concerné,
 2. nouveauté (moins de 24 h, pas encore publié ici),
-3. enjeu clair qu'on peut dire en une phrase, idéalement avec un chiffre.
+3. un angle qui donne envie de regarder : un chiffre surprenant, une première, un contraste, une question à laquelle
+   la vidéo répond. Un sujet sans angle n'est pas retenu, même s'il est vrai et récent.
 
 Prendre les meilleurs, dans la limite demandée, en ne gardant que ceux qui respectent la section 0.
 
@@ -57,7 +77,7 @@ Le premier écran est toujours `hook`, le dernier toujours `outro`. Varier les �
   "slug": "illit-top-album-sales",
   "section": "CHARTS",
   "source": "Billboard / Korea Herald",
-  "caption": "Texte de la description TikTok, avec les sources et 3 à 5 hashtags.",
+  "caption": "Description TikTok, structurée comme indiqué plus bas.",
   "scenes": [ ... ]
 }
 ```
@@ -66,7 +86,26 @@ Le premier écran est toujours `hook`, le dernier toujours `outro`. Varier les �
 `seed` (facultatif) : un entier ; sans lui, il est tiré du slug. C'est lui qui fait varier fond, couleurs, transitions,
 ordre d'apparition et musique.
 
-Dans `caption` (la phrase en bas d'écran), entourer d'astérisques le passage à mettre en vert : `"*first No. 1* on this chart."`
+### La description TikTok (`caption` à la racine du fichier)
+
+Toujours la même structure, avec de vrais retours à la ligne (`\n` dans le JSON) :
+
+```
+<Accroche : la question ou le fait fort, 90 caractères max>
+
+<Le résumé en une ou deux phrases, avec le chiffre clé. 200 caractères max.>
+
+Sources: <Média 1> · <Média 2>
+
+Follow @deepcut.kpop for one K-pop story at a time.
+
+#kpop #<groupe> #<sujet> #kpopnews
+```
+
+Quatre à six hashtags, tous pertinents : `#kpop`, le groupe ou l'artiste, le thème (`#billboard`, `#worldtour`,
+`#comeback`...), `#kpopnews`. Pas d'émoji en rafale, un seul au maximum. Pas de mots en capitales hors noms propres.
+
+Dans le `caption` **d'un écran** (la phrase en bas d'écran), entourer d'astérisques le passage à mettre en vert : `"*first No. 1* on this chart."`
 Garder ces phrases sous 40 caractères environ. `dur` (secondes) est facultatif sur chaque écran.
 
 | type | champs | usage |
@@ -112,7 +151,7 @@ curl -sS -o /dev/null -w "%{http_code}\n" https://raw.githubusercontent.com/Chen
 ## 6. Programmer sur TikTok
 
 Outil Metricool `createScheduledPost`, marque `blogId` **8092744**, fuseau **Europe/Paris**. Une publication par vidéo,
-à l'heure du créneau demandé (meilleurs créneaux mesurés : 10:00, 12:00, 18:00). L'heure doit être dans le futur.
+à l'heure du créneau demandé (meilleurs créneaux mesurés : 10:00, 12:00, 16:00, 18:00). L'heure doit être dans le futur.
 
 ```json
 {"autoPublish": true, "descendants": [], "draft": false, "firstCommentText": "", "hasNotReadNotes": false,
@@ -130,7 +169,8 @@ Vérifier dans la réponse que le statut TikTok est `PENDING` et que `media` poi
 
 ## 7. Tenir le journal
 
-Ajouter une ligne par vidéo dans `posted.md` (date, créneau, slug, accroche, liens des sources, écrans utilisés),
+Ajouter une ligne par vidéo dans `posted.md` (date, créneau, slug, accroche, liens des sources, écrans utilisés,
+en précisant la famille de sujet et le groupe dans l'accroche si ce n'est pas évident),
 committer avec le fichier du sujet et pousser sur `main`.
 
 ## 8. Compte rendu
