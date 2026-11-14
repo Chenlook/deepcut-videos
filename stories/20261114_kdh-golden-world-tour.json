@@ -1,0 +1,16 @@
+{
+  "slug": "kdh-golden-world-tour",
+  "section": "TOURS",
+  "source": "Variety / Billboard",
+  "caption": "Netflix and AEG Presents announced the first KPop Demon Hunters Golden World Tour dates on Nov. 13: 61 shows in 35 cities across North America, Europe and the U.K. in 2027, opening June 5 in Baltimore. Asia Pacific and Latin America dates are still to come. Sources: Variety, Billboard. #kpop #kpopdemonhunters #huntrix #tour #kpopnews",
+  "scenes": [
+    {"type": "hook", "top": ["HOW BIG IS THE", "HUNTR/X TOUR?"], "token": "61", "bottom": "SHOWS ANNOUNCED", "pill": "FIRST DATES ARE OUT"},
+    {"type": "statement", "kicker": "NETFLIX · AEG PRESENTS", "lines": ["GOLDEN", "WORLD TOUR", "*DATES ARE OUT"], "caption": "Announced *Nov 13.*"},
+    {"type": "number", "label": "FIRST DATES", "value": 35, "under": "CITIES", "caption": "*61 shows,* all in 2027."},
+    {"type": "timeline", "title": "2027 ROUTE", "events": [["JUN 5", "Opens in Baltimore"], ["AUG 14", "North America ends in Tacoma"], ["SEP 1", "Europe opens in Zurich"], ["OCT 23", "Last listed show, London"]], "caption": "North America, then *Europe and U.K.*"},
+    {"type": "statement", "kicker": "ON STAGE", "lines": ["ANIMATED", "*HUNTR/X", "+ LIVE", "PERFORMERS"], "caption": "According to *Netflix and AEG.*"},
+    {"type": "number", "label": "FULL PLAN · 2027-2028", "value": 150, "under": "SHOWS", "caption": "In nearly *50 cities.*"},
+    {"type": "statement", "kicker": "STILL TO COME", "lines": ["ASIA PACIFIC", "*LATIN AMERICA", "DATES TBA"], "caption": "General on-sale *Nov 20.*"},
+    {"type": "outro", "lines": ["FOLLOW", "*DEEP CUT"], "sub": "ONE K-POP STORY AT A TIME"}
+  ]
+}

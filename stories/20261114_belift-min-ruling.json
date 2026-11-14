@@ -1,0 +1,15 @@
+{
+  "slug": "belift-min-ruling",
+  "section": "COURTS",
+  "source": "Yonhap / Korea JoongAng Daily",
+  "caption": "A Seoul court dismissed Belift Lab's 2 billion won damages suit against former ADOR CEO Min Hee-jin on Nov. 13, and dismissed her 5 billion won countersuit too. First-instance ruling; Belift Lab says it will appeal. Sources: Yonhap (via The Korea Times), Korea JoongAng Daily. #kpop #illit #newjeans #hybe #kpopnews",
+  "scenes": [
+    {"type": "hook", "top": ["DID MIN HEE-JIN", "DEFAME ILLIT'S LABEL?"], "token": "2B", "bottom": "WON CLAIMED", "pill": "A SEOUL COURT JUST RULED"},
+    {"type": "statement", "kicker": "SEOUL WESTERN DISTRICT COURT", "lines": ["BELIFT LAB'S", "CLAIM", "*DISMISSED"], "caption": "First-instance ruling, *Nov 13.*"},
+    {"type": "timeline", "title": "THE CASE", "events": [["APR 2024", "Min says ILLIT copied NewJeans"], ["JUN 2024", "Belift Lab sues for 2 billion won"], ["NOV 2024", "Min countersues for 5 billion won"], ["NOV 13", "Court dismisses both claims"]], "caption": "Both sides' claims *dismissed.*"},
+    {"type": "sides", "title": "TWO SIDES", "a": {"who": "Belift Lab", "text": "Said the copying claim was false and harmed the label and ILLIT."}, "b": {"who": "Min Hee-jin", "text": "Said the label's rebuttal spread false claims and caused damage."}, "caption": "The court called both *opinions.*"},
+    {"type": "flow", "title": "THE COURT'S REASONING", "nodes": ["REMARKS ON SIMILARITY", "OPINION, NOT FACT", "NO DAMAGES"], "caption": "According to *the ruling.*"},
+    {"type": "number", "label": "BELIFT LAB CLAIMED", "value": 2, "suffix": "B", "under": "KOREAN WON", "caption": "Label says it will *appeal.*"},
+    {"type": "outro", "lines": ["FOLLOW", "*DEEP CUT"], "sub": "ONE K-POP STORY AT A TIME"}
+  ]
+}
