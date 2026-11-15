@@ -1,0 +1,83 @@
+{
+  "slug": "coachella-2027-kpop",
+  "section": "FESTIVALS",
+  "source": "Korea Herald / Variety",
+  "caption": "Which K-pop acts are on the Coachella 2027 lineup?\n\nJISOO, NCT and BABYMONSTER are on the bill announced Nov. 11, one per night. The festival runs April 9-11 and 16-18, 2027 in Indio, California.\n\nSources: The Korea Herald · Variety\n\nFollow @deepcut.kpop for one K-pop story at a time.\n\n#kpop #coachella #jisoo #nct #babymonster #kpopnews",
+  "scenes": [
+    {
+      "type": "hook",
+      "top": [
+        "K-POP ACTS AT",
+        "COACHELLA 2027"
+      ],
+      "token": "3",
+      "bottom": "WHO'S ON THE BILL?",
+      "pill": "LINEUP ANNOUNCED NOV 11"
+    },
+    {
+      "type": "flow",
+      "title": "ONE PER NIGHT",
+      "nodes": [
+        "FRI APR 9 + 16: JISOO",
+        "SAT APR 10 + 17: NCT",
+        "SUN APR 11 + 18: BABYMONSTER"
+      ],
+      "caption": "Each act plays *both weekends.*"
+    },
+    {
+      "type": "statement",
+      "kicker": "JISOO",
+      "lines": [
+        "HER FIRST",
+        "*SOLO SET",
+        "AT COACHELLA"
+      ],
+      "caption": "She played it with *BLACKPINK* before."
+    },
+    {
+      "type": "timeline",
+      "title": "BLACKPINK AT COACHELLA",
+      "events": [
+        [
+          "2019",
+          "Festival debut as a group"
+        ],
+        [
+          "2023",
+          "Headlining set"
+        ],
+        [
+          "2027",
+          "Jisoo returns solo"
+        ]
+      ],
+      "caption": "*2023:* first K-pop headliner."
+    },
+    {
+      "type": "statement",
+      "kicker": "FESTIVAL DEBUTS",
+      "lines": [
+        "NCT",
+        "*AND",
+        "BABYMONSTER"
+      ],
+      "caption": "Both play it *for the first time.*"
+    },
+    {
+      "type": "number",
+      "label": "TWO WEEKENDS FROM",
+      "value": 9,
+      "prefix": "APR ",
+      "under": "INDIO, CALIFORNIA",
+      "caption": "*April 9-11* and *April 16-18.*"
+    },
+    {
+      "type": "outro",
+      "lines": [
+        "FOLLOW",
+        "*DEEP CUT"
+      ],
+      "sub": "ONE K-POP STORY AT A TIME"
+    }
+  ]
+}
