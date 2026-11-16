@@ -1,0 +1,16 @@
+{
+  "slug": "ateez-golden-hour-part-6",
+  "section": "RELEASES",
+  "source": "Korea Herald / Yonhap",
+  "caption": "ATEEZ is back with EP No. 15. What did the last one do?\n\nGolden Hour: Part 6 came out on Nov. 13, five months after Part 5, which gave the group its third No. 1 on the Billboard 200.\n\nSources: The Korea Herald · Yonhap via The Korea Times\n\nFollow @deepcut.kpop for one K-pop story at a time.\n\n#kpop #ateez #goldenhour #comeback #kpopnews",
+  "scenes": [
+    {"type": "hook", "top": ["ATEEZ IS BACK", "WITH EP NO."], "token": "15", "bottom": "WHAT DID THE LAST ONE DO?", "pill": "NEW EP OUT SINCE NOV 13"},
+    {"type": "statement", "kicker": "THE NEW EP", "lines": ["GOLDEN HOUR", "*PART 6"], "caption": "Released via *KQ Entertainment.*"},
+    {"type": "number", "label": "MONTHS SINCE THE LAST EP", "value": 5, "under": "PART 5 CAME OUT IN JUNE", "caption": "A *five-month* gap between EPs."},
+    {"type": "flow", "title": "FROM PART 5 TO PART 6", "nodes": ["PART 5 OUT IN JUNE", "NEW EP ANNOUNCED OCT 8", "PART 6 OUT NOV 13"], "caption": "Dates per *Yonhap.*"},
+    {"type": "streak", "big": "3", "title": "NO. 1 ALBUMS", "count": 3, "labels": "NO. 1", "last": "#1", "last_label": "PART 5",
+     "lines": ["ATEEZ CHART-TOPPERS ON", "THE BILLBOARD 200 SO FAR"], "caption": "Part 5 was their *third No. 1.*"},
+    {"type": "versus", "left": ["TEAM", "PART 5"], "right": ["TEAM", "PART 6"], "pill": "WHICH ERA?  COMMENT"},
+    {"type": "outro", "lines": ["FOLLOW", "*DEEP CUT"], "sub": "ONE K-POP STORY AT A TIME"}
+  ]
+}

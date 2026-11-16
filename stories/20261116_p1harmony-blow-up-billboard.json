@@ -1,0 +1,17 @@
+{
+  "slug": "p1harmony-blow-up-billboard",
+  "section": "CHARTS",
+  "source": "Billboard",
+  "caption": "Where did P1Harmony just score its first U.S. No. 1?\n\nBLOW UP debuts at No. 4 on the Billboard 200 with 45,000 units and gives the group its first No. 1 on the Top Album Sales chart, according to Billboard.\n\nSources: Billboard\n\nFollow @deepcut.kpop for one K-pop story at a time.\n\n#kpop #p1harmony #billboard #billboard200 #kpopnews",
+  "scenes": [
+    {"type": "hook", "top": ["WHERE DID", "P1HARMONY HIT"], "token": "#1", "bottom": "IN THE U.S.?", "pill": "HINT: NOT THE BILLBOARD 200"},
+    {"type": "ranking", "title": "BILLBOARD 200", "tag": "NOV 21", "highlight": 3,
+     "rows": [["1", "OLIVIA RODRIGO"], ["2", "LIL BABY"], ["3", "MORGAN WALLEN"], ["4", "P1HARMONY", "BLOW UP"], ["5", "ELLA LANGLEY"]],
+     "caption": "A *No. 4 debut,* tying their best."},
+    {"type": "number", "label": "U.S. UNITS IN WEEK ONE", "value": 45000, "under": "EQUIVALENT ALBUM UNITS", "caption": "*43,500* of them were album sales."},
+    {"type": "statement", "kicker": "TOP ALBUM SALES CHART", "lines": ["P1HARMONY", "*FIRST NO. 1", "ON THIS CHART"], "caption": "This chart ranks *copies sold.*"},
+    {"type": "grid", "count": 30, "plus": false, "label": ["CD + VINYL", "VARIANTS"], "caption": "*25 CD* and 5 vinyl variants."},
+    {"type": "statement", "kicker": "THIRD BILLBOARD 200 TOP 10", "lines": ["EX · NO. 9", "UNIQUE · NO. 4", "*BLOW UP · NO. 4"], "caption": "Source: *Billboard,* Nov 15."},
+    {"type": "outro", "lines": ["FOLLOW", "*DEEP CUT"], "sub": "ONE K-POP STORY AT A TIME"}
+  ]
+}
