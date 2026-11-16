@@ -1,0 +1,15 @@
+{
+  "slug": "kda-worlds-2026-return",
+  "section": "COLLABS",
+  "source": "Riot Games / Korea JoongAng Daily",
+  "caption": "Two i-dle members just became K/DA again. Where, and after how long?\n\nMiyeon and Soyeon performed as Ahri and Akali at the League of Legends Worlds final in Brooklyn on Nov. 14, eight years after their first K/DA stage in 2018.\n\nSources: Riot Games (LoL Esports) · Korea JoongAng Daily\n\nFollow @deepcut.kpop for one K-pop story at a time.\n\n#kpop #idle #kda #worlds2026 #leagueoflegends #kpopnews",
+  "scenes": [
+    {"type": "hook", "top": ["TWO I-DLE STARS", "JUST BECAME"], "token": "K/DA", "bottom": "AGAIN. AFTER HOW LONG?", "pill": "LOL WORLDS FINAL 2026"},
+    {"type": "statement", "kicker": "NOV 14 · BROOKLYN, NEW YORK", "lines": ["MIYEON AS AHRI", "*SOYEON AS AKALI"], "caption": "At the *Worlds final* opening show."},
+    {"type": "number", "label": "YEARS SINCE THEIR FIRST K/DA STAGE", "value": 8, "under": "FIRST TIME: WORLDS FINAL 2018", "caption": "Back after *eight years.*"},
+    {"type": "timeline", "title": "K/DA IN DATES", "events": [["2018", "DEBUT SINGLE POP/STARS"], ["2020", "FIRST EP, ALL OUT"], ["OCT 2026", "NEW SONG FIRESTARTER"], ["NOV 14", "BACK AT THE WORLDS FINAL"]], "caption": "First new music in *six years.*"},
+    {"type": "items", "title": "THE K/DA SETLIST", "labels": ["MORE", "POP/STARS", "FIRESTARTER"], "caption": "With *Sophie Powers* and Mimi Webb."},
+    {"type": "statement", "kicker": "ONE MORE ROLE", "lines": ["SOYEON PLAYED", "*AKALI", "IN TWO GROUPS"], "caption": "K/DA and *True Damage,* same show."},
+    {"type": "outro", "lines": ["FOLLOW", "*DEEP CUT"], "sub": "ONE K-POP STORY AT A TIME"}
+  ]
+}
